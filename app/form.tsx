@@ -1,35 +1,16 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { Guest, GuestsContext } from "./page";
 
-interface Guest {
-  firstName: string;
-  lastName: string;
-  gender: "male" | "female";
-  age: number;
-  amountDue: number;
-}
 export default function Form() {
-  const [guests, setGuests] = useState<Array<Guest>>([
-    {
-      firstName: "Person",
-      lastName: "1",
-      gender: "female",
-      age: 27,
-      amountDue: 100,
-    },
-    {
-      firstName: "Person",
-      lastName: "2",
-      gender: "male",
-      age: 23,
-      amountDue: 0,
-    },
-  ]);
+  const { guests, setGuests } = useContext(GuestsContext);
+
   const [newGuest, setNewGuest] = useState<Guest>({
     firstName: "",
     lastName: "",
     gender: "female",
     age: 0,
     amountDue: 0,
+    RSVP: "pending",
   });
 
   const handleChange = (
@@ -42,14 +23,14 @@ export default function Form() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setGuests((values) => [...values, newGuest]);
+    if (setGuests) setGuests((values) => [...values, newGuest]);
   };
 
   return (
     <div>
-      {guests.map((guest) => (
+      {guests?.map((guest) => (
         <div key={guest.lastName + guest.firstName}>
-          {guest.firstName} {guest.lastName} {guest.age} {guest.gender} {guest.amountDue}
+          {guest.firstName} {guest.lastName} {guest.age} {guest.gender} {guest.amountDue} {guest.RSVP}
         </div>
       ))}
       <form onSubmit={handleSubmit}>
@@ -77,6 +58,13 @@ export default function Form() {
         <select id="gender" name="gender" onChange={handleChange}>
           <option value="female">Female</option>
           <option value="male">Male</option>
+        </select>
+        <label htmlFor="RSVP">RSVP:</label>
+        <select id="RSVP" name="RSVP" onChange={handleChange}>
+          <option value="pending">Pending</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="maybe">Maybe</option>
         </select>
         <label htmlFor="age">
           Age:
