@@ -73,7 +73,7 @@ export default function Form() {
             onChange={handleChange}
           />
         </label>
-        <label htmlFor="gender">Choose a gender:</label>
+        <label htmlFor="gender">Gender:</label>
         <select id="gender" name="gender" onChange={handleChange}>
           <option value="female">Female</option>
           <option value="male">Male</option>
