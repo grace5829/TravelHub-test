@@ -2,19 +2,7 @@ import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { Guest, GuestsContext } from "./page";
 import styled from "styled-components";
 
-const TableWrapper = styled.span`
-  margin: 10px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
-const EachGuest = styled.div`
-  display: grid;
-  grid-template-columns: 200px 100px 100px 100px 100px;
-`;
-const EachGuestInfo = styled.span`
-  border: 2px solid blue;
-`;
+
 const FormWrapper = styled.span`
   display: grid;
   grid-template-columns: 170px 170px 170px 170px;
@@ -110,27 +98,7 @@ export default function Form() {
         </FormWrapper>
         <input type="submit" />
       </form>
-      <TableWrapper>
-        <EachGuest>
-          <EachGuestInfo>Name</EachGuestInfo>
-          <EachGuestInfo>RSVP</EachGuestInfo>
-          <EachGuestInfo>Age</EachGuestInfo>
-          <EachGuestInfo>Gender</EachGuestInfo>
-          <EachGuestInfo>Amount Due</EachGuestInfo>
-        </EachGuest>
 
-        {guests?.map((guest) => (
-          <EachGuest key={guest.lastName + guest.firstName}>
-            <EachGuestInfo>
-              {guest.firstName} {guest.lastName}
-            </EachGuestInfo>
-            <EachGuestInfo>{guest.RSVP}</EachGuestInfo>
-            <EachGuestInfo>{guest.age} </EachGuestInfo>
-            <EachGuestInfo>{guest.gender}</EachGuestInfo>
-            <EachGuestInfo>${guest.amountDue}</EachGuestInfo>
-          </EachGuest>
-        ))}
-      </TableWrapper>
     </div>
   );
 }
