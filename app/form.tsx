@@ -1,5 +1,19 @@
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { Guest, GuestsContext } from "./page";
+import styled from "styled-components";
+
+
+const TableWrapper = styled.span`
+border:2px solid green;
+margin:10px
+`;
+ const EachGuest = styled.div`
+display:grid;
+grid-template-columns: 200px 100px 100px 100px 100px;
+`;
+ const EachGuestInfo = styled.span`
+border:2px solid blue;
+`;
 
 export default function Form() {
   const { guests, setGuests } = useContext(GuestsContext);
@@ -28,11 +42,28 @@ export default function Form() {
 
   return (
     <div>
+        <TableWrapper>
+
+        <EachGuest>
+        <EachGuestInfo>Name</EachGuestInfo>
+        <EachGuestInfo>RSVP</EachGuestInfo>
+        <EachGuestInfo>Age</EachGuestInfo>
+        <EachGuestInfo>Gender</EachGuestInfo>
+        <EachGuestInfo>Amount Due</EachGuestInfo>
+        </EachGuest>
+
       {guests?.map((guest) => (
-        <div key={guest.lastName + guest.firstName}>
-          {guest.firstName} {guest.lastName} {guest.age} {guest.gender} {guest.amountDue} {guest.RSVP}
-        </div>
+          <EachGuest key={guest.lastName + guest.firstName}>
+            <EachGuestInfo> {guest.firstName} {guest.lastName}</EachGuestInfo>
+            <EachGuestInfo>{guest.RSVP}</EachGuestInfo>
+            <EachGuestInfo>{guest.age} </EachGuestInfo>
+            <EachGuestInfo>{guest.gender}</EachGuestInfo>
+            <EachGuestInfo>${guest.amountDue}</EachGuestInfo>
+            
+        </EachGuest>
       ))}
+              </TableWrapper>
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="firstName">
           First Name:
