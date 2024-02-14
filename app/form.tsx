@@ -1,5 +1,14 @@
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { Guest, GuestsContext } from "./page";
+import styled from "styled-components";
+
+
+const FormWrapper = styled.span`
+  display: grid;
+  grid-template-columns: 170px 170px 170px 170px;
+  row-gap: 10px;
+  padding: 10px;
+`;
 
 export default function Form() {
   const { guests, setGuests } = useContext(GuestsContext);
@@ -28,66 +37,68 @@ export default function Form() {
 
   return (
     <div>
-      {guests?.map((guest) => (
-        <div key={guest.lastName + guest.firstName}>
-          {guest.firstName} {guest.lastName} {guest.age} {guest.gender} {guest.amountDue} {guest.RSVP}
-        </div>
-      ))}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="firstName">
-          First Name:
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={newGuest.firstName}
-            onChange={handleChange}
-          />
-        </label>
-        <label htmlFor="lastName">
-          Last Name:
-          <input
-            type="text"
-            id="firstName"
-            name="lastName"
-            value={newGuest.lastName}
-            onChange={handleChange}
-          />
-        </label>
-        <label htmlFor="gender">Gender:</label>
-        <select id="gender" name="gender" onChange={handleChange}>
-          <option value="female">Female</option>
-          <option value="male">Male</option>
-        </select>
-        <label htmlFor="RSVP">RSVP:</label>
-        <select id="RSVP" name="RSVP" onChange={handleChange}>
-          <option value="pending">Pending</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-          <option value="maybe">Maybe</option>
-        </select>
-        <label htmlFor="age">
-          Age:
-          <input
-            type="number"
-            id="age"
-            name="age"
-            value={newGuest.age}
-            onChange={handleChange}
-          />
-        </label>
-        <label htmlFor="amountDue">
-          Amount Due:
-          <input
-            type="number"
-            id="amountDue"
-            name="amountDue"
-            value={newGuest.amountDue}
-            onChange={handleChange}
-          />
-        </label>
+        <FormWrapper>
+          <label htmlFor="firstName">
+            First Name:
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={newGuest.firstName}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="lastName">
+            Last Name:
+            <input
+              type="text"
+              id="firstName"
+              name="lastName"
+              value={newGuest.lastName}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="age">
+            Age:
+            <input
+              type="number"
+              id="age"
+              name="age"
+              value={newGuest.age}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="amountDue">
+            Amount Due:
+            <input
+              type="number"
+              id="amountDue"
+              name="amountDue"
+              value={newGuest.amountDue}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="gender">
+            Gender:
+            <select id="gender" name="gender" onChange={handleChange}>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+            </select>
+          </label>
+          <label htmlFor="RSVP">
+            RSVP:
+            <select id="RSVP" name="RSVP" onChange={handleChange}>
+              <option value="pending">Pending</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+              <option value="maybe">Maybe</option>
+            </select>
+          </label>
+        </FormWrapper>
         <input type="submit" />
       </form>
+
     </div>
   );
 }

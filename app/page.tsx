@@ -3,6 +3,7 @@ import { useState } from "react";
 import { createContext } from "react";
 import Form from "./form";
 import Logo from "./logo";
+import Table from "./table";
 
 export type Guest = {
   firstName: string;
@@ -49,6 +50,7 @@ export default function Home() {
     <GuestsContext.Provider value={contextValue}>
       <Logo/>
       <Form/>
+      <Table/>
     </GuestsContext.Provider>
   );
 }
