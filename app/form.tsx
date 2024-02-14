@@ -4,8 +4,10 @@ import styled from "styled-components";
 
 
 const TableWrapper = styled.span`
-border:2px solid green;
-margin:10px
+margin:10px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
 `;
  const EachGuest = styled.div`
 display:grid;
